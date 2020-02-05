@@ -5,8 +5,6 @@ var logger = require('morgan');
 var session = require('express-session');
 var passport = require('./auth/passport');
 
-
-var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth')
 
@@ -16,8 +14,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../frontend-auth/build')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: "NOT_A_GOOD_SECRET",
     resave: false,
